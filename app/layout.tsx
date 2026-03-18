@@ -10,9 +10,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Audyt.ai — AI Report Verification",
+  title: "Audyt.ai: AI Report Verification",
   description:
-    "Catch AI hallucinations before they reach your clients. Upload source documents, paste the AI report — get claim-by-claim verdicts with exact citations.",
+    "Catch AI hallucinations before they reach your clients. Upload source documents, paste the AI report and get claim-by-claim verdicts with exact citations.",
 };
 
 export default function RootLayout({

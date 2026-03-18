@@ -245,8 +245,8 @@ function UploadView({
                   Source documents
                 </h2>
                 <p className="text-xs text-[#64748B] mt-0.5">
-                  The ground-truth files the AI report was based on — PDF, DOCX,
-                  XLSX, TXT
+                  The ground-truth files the AI report was based on. Supported
+                  formats: PDF, DOCX, XLSX, TXT
                 </p>
               </div>
               {sourceFiles.length > 0 && (
@@ -285,7 +285,7 @@ function UploadView({
                 <span className="text-[#06B6D4]">browse</span>
               </p>
               <p className="text-xs text-[#94A3B8] mt-1">
-                PDF, DOCX, XLSX, XLS, TXT — multiple files accepted
+                PDF, DOCX, XLSX, XLS, TXT. Multiple files accepted.
               </p>
             </div>
 
@@ -329,7 +329,7 @@ function UploadView({
                 AI-generated report
               </h2>
               <p className="text-xs text-[#64748B] mt-0.5">
-                The report to verify — paste the text or upload a file
+                The report to verify. Paste the text or upload a file.
               </p>
             </div>
 
@@ -480,7 +480,7 @@ function ProcessingView({
   const claimsTotal = progress?.claims_total ?? 0;
 
   const stageLabel: Record<string, string> = {
-    queued: "Queued — starting shortly...",
+    queued: "Queued, starting shortly...",
     parsing_sources: "Parsing source documents...",
     embedding: "Building knowledge index...",
     extracting_claims: "Extracting claims from report...",

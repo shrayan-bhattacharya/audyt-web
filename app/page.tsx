@@ -23,7 +23,7 @@ function Hero() {
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#1E3A5F] bg-[#0F1F3C] text-[#06B6D4] text-xs font-medium mb-8">
               <span className="w-1.5 h-1.5 rounded-full bg-[#06B6D4] animate-pulse" />
-              Now in beta — free to use
+              Now in beta, free to use
             </div>
 
             <h1 className="text-5xl lg:text-6xl font-bold text-white leading-[1.1] tracking-tight mb-6">
@@ -32,7 +32,7 @@ function Hero() {
             </h1>
 
             <p className="text-lg text-[#93B5CC] leading-relaxed mb-10 max-w-xl">
-              Upload your source documents, paste the AI-generated report — Audyt
+              Upload your source documents, paste the AI-generated report. Audyt
               checks every factual claim and returns{" "}
               <span className="text-white font-medium">
                 CORRECT / INCORRECT / UNVERIFIABLE
@@ -91,7 +91,7 @@ function AuditMockup() {
             <div className="w-3 h-3 rounded-full bg-[#10B981]/60" />
           </div>
           <span className="ml-2 text-xs text-[#4A6580] font-mono">
-            Audit results — NovaTech_FY2023.pdf
+            Audit results: NovaTech_FY2023.pdf
           </span>
           <div className="ml-auto flex items-center gap-1.5 text-xs text-[#10B981]">
             <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
@@ -229,7 +229,7 @@ function HowItWorks() {
       number: "01",
       title: "Upload your source documents",
       description:
-        "Drop in PDFs, Excel spreadsheets, Word docs, or plain text files — the actual source of truth your AI report was based on.",
+        "Drop in PDFs, Excel spreadsheets, Word docs, or plain text files. These are the ground-truth sources your AI report was based on.",
       icon: (
         <svg
           className="w-6 h-6"
@@ -271,7 +271,7 @@ function HowItWorks() {
       number: "03",
       title: "Get verdicts with exact citations",
       description:
-        "Every claim comes back CORRECT, INCORRECT, or UNVERIFIABLE — with the exact source quoted and a citation to the specific page, sheet, or row.",
+        "Every claim comes back CORRECT, INCORRECT, or UNVERIFIABLE, with the exact source quoted and a citation to the specific page, sheet, or row.",
       icon: (
         <svg
           className="w-6 h-6"
@@ -406,7 +406,7 @@ function UseCases() {
       icon: "✍️",
       title: "Research & content teams",
       description:
-        "Verify AI-written articles and research summaries against primary sources. Ship confident, credible content — every time.",
+        "Verify AI-written articles and research summaries against primary sources. Ship confident, credible content every time.",
     },
   ];
 
