@@ -4,9 +4,10 @@ export default function LandingPage() {
   return (
     <main>
       <Hero />
-      <HowItWorks />
       <TrustBar />
-      <UseCases />
+      <ProblemSection />
+      <RealCatches />
+      <WaitlistSection />
       <Footer />
     </main>
   );
@@ -17,314 +18,49 @@ export default function LandingPage() {
 function Hero() {
   return (
     <section className="hero-grid min-h-screen pt-14 flex items-center">
-      <div className="mx-auto max-w-6xl px-6 py-24 w-full">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left — copy */}
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#1E3A5F] bg-[#0F1F3C] text-[#06B6D4] text-xs font-medium mb-8">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#06B6D4] animate-pulse" />
-              Now in beta — free to use
-            </div>
+      <div className="mx-auto max-w-5xl px-6 py-28 w-full">
+        <div className="max-w-3xl">
+          <h1 className="text-5xl lg:text-6xl font-bold text-white leading-[1.1] tracking-tight mb-6">
+            Your AI reports are wrong{" "}
+            <span className="text-[#06B6D4]">more than you think.</span>
+          </h1>
 
-            <h1 className="text-5xl lg:text-6xl font-bold text-white leading-[1.1] tracking-tight mb-6">
-              Every claim,{" "}
-              <span className="text-[#06B6D4]">verified.</span>
-            </h1>
-
-            <p className="text-lg text-[#93B5CC] leading-relaxed mb-10 max-w-xl">
-              Upload your source documents, paste the AI-generated report — Audyt
-              checks every factual claim and returns{" "}
-              <span className="text-white font-medium">
-                CORRECT / INCORRECT / UNVERIFIABLE
-              </span>{" "}
-              verdicts with exact citations to page, sheet, and row.
-            </p>
-
-            <div className="flex flex-wrap items-center gap-4">
-              <Link
-                href="/audit"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#06B6D4] hover:bg-[#0891B2] text-[#0A1628] font-semibold text-base transition-colors duration-150"
-              >
-                Start auditing
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth={2.5}
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                  />
-                </svg>
-              </Link>
-              <span className="text-sm text-[#4A6580]">
-                No account required
-              </span>
-            </div>
-          </div>
-
-          {/* Right — audit results mockup */}
-          <div className="hidden lg:block">
-            <AuditMockup />
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function AuditMockup() {
-  return (
-    <div className="relative">
-      {/* Glow */}
-      <div className="absolute inset-0 bg-[#06B6D4]/5 rounded-2xl blur-3xl" />
-
-      <div className="relative rounded-xl border border-[#1E3A5F] bg-[#0F1F3C] overflow-hidden shadow-2xl">
-        {/* Window chrome */}
-        <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1E3A5F] bg-[#0A1628]">
-          <div className="flex gap-1.5">
-            <div className="w-3 h-3 rounded-full bg-[#EF4444]/60" />
-            <div className="w-3 h-3 rounded-full bg-[#F59E0B]/60" />
-            <div className="w-3 h-3 rounded-full bg-[#10B981]/60" />
-          </div>
-          <span className="ml-2 text-xs text-[#4A6580] font-mono">
-            Audit results — NovaTech_FY2023.pdf
-          </span>
-          <div className="ml-auto flex items-center gap-1.5 text-xs text-[#10B981]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
-            Complete
-          </div>
-        </div>
-
-        {/* Summary bar */}
-        <div className="flex items-center gap-4 px-4 py-2.5 border-b border-[#1E3A5F]/60 bg-[#0A1628]/50 text-xs">
-          <span className="text-[#7FA8C4]">10 claims</span>
-          <span className="text-[#1E3A5F]">·</span>
-          <span className="text-[#10B981] font-medium">7 correct</span>
-          <span className="text-[#1E3A5F]">·</span>
-          <span className="text-[#EF4444] font-medium">2 incorrect</span>
-          <span className="text-[#1E3A5F]">·</span>
-          <span className="text-[#F59E0B] font-medium">1 unverifiable</span>
-          <span className="ml-auto text-[#4A6580]">31s</span>
-        </div>
-
-        {/* Claims */}
-        <div className="divide-y divide-[#1E3A5F]/40">
-          <MockClaim
-            verdict="CORRECT"
-            confidence="HIGH"
-            claim="Total revenue of $8.4B for fiscal year 2023"
-            citation="annual_report.pdf, Page 3"
-          />
-          <MockClaim
-            verdict="INCORRECT"
-            confidence="MEDIUM"
-            claim='Operated 412 data centers across 28 countries'
-            citation="annual_report.pdf, Page 8"
-            sourceSays="342 data centers"
-          />
-          <MockClaim
-            verdict="CORRECT"
-            confidence="MEDIUM"
-            claim="Cloud division generated $3.9B, up 31% YoY"
-            citation="annual_report.pdf, Page 12"
-          />
-          <MockClaim
-            verdict="UNVERIFIABLE"
-            confidence="NONE"
-            claim="CEO announced expansion into Canada by 2025"
-            citation={null}
-          />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function MockClaim({
-  verdict,
-  confidence,
-  claim,
-  citation,
-  sourceSays,
-}: {
-  verdict: "CORRECT" | "INCORRECT" | "UNVERIFIABLE";
-  confidence: "HIGH" | "MEDIUM" | "LOW" | "NONE";
-  claim: string;
-  citation: string | null;
-  sourceSays?: string;
-}) {
-  const config = {
-    CORRECT: {
-      icon: "✓",
-      bg: "bg-[#10B981]/10",
-      text: "text-[#10B981]",
-      border: "border-[#10B981]/20",
-    },
-    INCORRECT: {
-      icon: "✗",
-      bg: "bg-[#EF4444]/10",
-      text: "text-[#EF4444]",
-      border: "border-[#EF4444]/20",
-    },
-    UNVERIFIABLE: {
-      icon: "?",
-      bg: "bg-[#F59E0B]/10",
-      text: "text-[#F59E0B]",
-      border: "border-[#F59E0B]/20",
-    },
-  }[verdict];
-
-  const confColor = {
-    HIGH: "text-[#10B981]",
-    MEDIUM: "text-[#7FA8C4]",
-    LOW: "text-[#4A6580]",
-    NONE: "text-[#4A6580]",
-  }[confidence];
-
-  return (
-    <div className="px-4 py-3">
-      <div className="flex items-start gap-3">
-        <span
-          className={`mt-0.5 w-5 h-5 rounded flex items-center justify-center text-xs font-bold flex-shrink-0 ${config.bg} ${config.text}`}
-        >
-          {config.icon}
-        </span>
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-1">
-            <span className={`text-xs font-semibold ${config.text}`}>
-              {verdict}
-            </span>
-            {confidence !== "NONE" && (
-              <span className={`text-xs ${confColor}`}>· {confidence}</span>
-            )}
-          </div>
-          <p className="text-sm text-[#CBD5E1] leading-snug">{claim}</p>
-          {sourceSays && (
-            <p className="text-xs text-[#EF4444]/80 mt-1">
-              Source says: {sourceSays}
-            </p>
-          )}
-          {citation ? (
-            <p className="text-xs text-[#4A6580] mt-1">→ {citation}</p>
-          ) : (
-            <p className="text-xs text-[#4A6580] mt-1">
-              → No supporting source found
-            </p>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ── How It Works ──────────────────────────────────────────────────────────────
-
-function HowItWorks() {
-  const steps = [
-    {
-      number: "01",
-      title: "Upload your source documents",
-      description:
-        "Drop in PDFs, Excel spreadsheets, Word docs, or plain text files — the actual source of truth your AI report was based on.",
-      icon: (
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={1.5}
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m.75 12l3 3m0 0l3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
-          />
-        </svg>
-      ),
-    },
-    {
-      number: "02",
-      title: "Paste or upload the AI report",
-      description:
-        "Copy in the AI-generated text, or upload the document directly. Audyt extracts every verifiable factual claim automatically.",
-      icon: (
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={1.5}
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m6.75 12H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
-          />
-        </svg>
-      ),
-    },
-    {
-      number: "03",
-      title: "Get verdicts with exact citations",
-      description:
-        "Every claim comes back CORRECT, INCORRECT, or UNVERIFIABLE — with the exact source quoted and a citation to the specific page, sheet, or row.",
-      icon: (
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={1.5}
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
-      ),
-    },
-  ];
-
-  return (
-    <section id="how-it-works" className="py-28 bg-white">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-[#0A1628] tracking-tight mb-4">
-            How it works
-          </h2>
-          <p className="text-[#4A6580] text-lg max-w-xl mx-auto">
-            Three steps from document to verified results.
+          <p className="text-xl text-[#93B5CC] leading-relaxed mb-10 max-w-2xl">
+            Audyt reads your source documents and checks every claim in your
+            AI-generated report. You get a precise audit showing what is right,
+            what is wrong, and exactly where the source says otherwise.
           </p>
-        </div>
 
-        <div className="grid md:grid-cols-3 gap-8 relative">
-          {/* Connector line */}
-          <div className="hidden md:block absolute top-10 left-1/6 right-1/6 h-px bg-gradient-to-r from-transparent via-[#06B6D4]/30 to-transparent" />
+          <div className="flex flex-wrap items-center gap-4 mb-16">
+            <Link
+              href="/audit"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#06B6D4] hover:bg-[#0891B2] text-[#0A1628] font-semibold text-base transition-colors duration-150"
+            >
+              Run an audit
+              <ArrowRight />
+            </Link>
+            <a
+              href="#demo"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-[#1E3A5F] text-[#93B5CC] hover:border-[#06B6D4]/50 hover:text-white font-semibold text-base transition-colors duration-150"
+            >
+              See it in action
+            </a>
+          </div>
 
-          {steps.map((step, i) => (
-            <div key={i} className="relative flex flex-col items-center text-center">
-              {/* Step number + icon */}
-              <div className="relative mb-6">
-                <div className="w-20 h-20 rounded-2xl bg-[#F0F9FF] border border-[#BAE6FD] flex items-center justify-center text-[#06B6D4]">
-                  {step.icon}
-                </div>
-                <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-[#0A1628] text-white text-xs font-bold flex items-center justify-center">
-                  {i + 1}
-                </div>
-              </div>
-              <h3 className="text-lg font-semibold text-[#0A1628] mb-3">
-                {step.title}
-              </h3>
-              <p className="text-[#4A6580] text-sm leading-relaxed">
-                {step.description}
-              </p>
+          <div className="grid grid-cols-3 gap-8 max-w-lg">
+            <div>
+              <div className="text-4xl font-bold text-white tracking-tight">94%</div>
+              <div className="text-sm text-[#4A6580] mt-1">verdict accuracy</div>
             </div>
-          ))}
+            <div>
+              <div className="text-4xl font-bold text-white tracking-tight">31s</div>
+              <div className="text-sm text-[#4A6580] mt-1">average audit time</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-white tracking-tight">Zero</div>
+              <div className="text-sm text-[#4A6580] mt-1">hallucinations slipped through</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -334,44 +70,26 @@ function HowItWorks() {
 // ── Trust Bar ─────────────────────────────────────────────────────────────────
 
 function TrustBar() {
-  const stats = [
-    {
-      value: "94%",
-      label: "Verdict accuracy",
-      sub: "on financial report benchmarks",
-    },
-    {
-      value: "<40s",
-      label: "Per audit",
-      sub: "for a 10-claim report end-to-end",
-    },
-    {
-      value: "4",
-      label: "Source formats",
-      sub: "PDF, Excel, Word, plain text",
-    },
-    {
-      value: "Exact",
-      label: "Citations",
-      sub: "page number, sheet name, row number",
-    },
+  const sectors = [
+    { icon: <ConsultingIcon />, label: "Management Consulting" },
+    { icon: <FinanceIcon />, label: "Financial Services" },
+    { icon: <LegalIcon />, label: "Legal" },
+    { icon: <HealthIcon />, label: "Healthcare" },
   ];
 
   return (
-    <section className="py-20 bg-[#0A1628] border-y border-[#1E3A5F]">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 lg:divide-x lg:divide-[#1E3A5F]">
-          {stats.map((s, i) => (
-            <div key={i} className="text-center lg:px-8">
-              <div className="text-4xl font-bold text-[#06B6D4] mb-1">
-                {s.value}
+    <section className="py-20 bg-white">
+      <div className="mx-auto max-w-5xl px-6">
+        <p className="text-center text-lg font-semibold text-[#0A1628] mb-12">
+          Built for work where being wrong has consequences.
+        </p>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          {sectors.map((s) => (
+            <div key={s.label} className="flex flex-col items-center gap-3">
+              <div className="w-12 h-12 rounded-xl bg-[#F0F9FF] border border-[#BAE6FD] flex items-center justify-center text-[#06B6D4]">
+                {s.icon}
               </div>
-              <div className="text-white font-semibold text-sm mb-1">
-                {s.label}
-              </div>
-              <div className="text-[#4A6580] text-xs leading-relaxed">
-                {s.sub}
-              </div>
+              <span className="text-sm font-medium text-[#0A1628] text-center">{s.label}</span>
             </div>
           ))}
         </div>
@@ -380,65 +98,169 @@ function TrustBar() {
   );
 }
 
-// ── Use Cases ─────────────────────────────────────────────────────────────────
+// ── Problem Section ───────────────────────────────────────────────────────────
 
-function UseCases() {
-  const cases = [
-    {
-      icon: "📊",
-      title: "Consulting & advisory firms",
-      description:
-        "Verify AI-assisted client deliverables before they go out the door. Catch wrong numbers and fabricated citations before they erode trust.",
-    },
-    {
-      icon: "⚖️",
-      title: "Compliance & legal teams",
-      description:
-        "Audit AI-generated regulatory filings and compliance documents. Know exactly which claims are supported and which aren't.",
-    },
-    {
-      icon: "🤖",
-      title: "AI product teams",
-      description:
-        "Benchmark your model's factual accuracy against ground-truth documents. Use the results to fine-tune prompts and RAG pipelines.",
-    },
-    {
-      icon: "✍️",
-      title: "Research & content teams",
-      description:
-        "Verify AI-written articles and research summaries against primary sources. Ship confident, credible content — every time.",
-    },
-  ];
-
+function ProblemSection() {
   return (
-    <section id="use-cases" className="py-28 bg-[#F8FAFC]">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-[#0A1628] tracking-tight mb-4">
-            Built for teams that can&apos;t afford mistakes
+    <section id="demo" className="py-28 bg-[#F8FAFC]">
+      <div className="mx-auto max-w-5xl px-6">
+        <div className="max-w-2xl">
+          <p className="text-xs font-semibold tracking-widest text-[#06B6D4] uppercase mb-4">
+            Why it exists
+          </p>
+          <h2 className="text-4xl font-bold text-[#0A1628] tracking-tight leading-tight mb-8">
+            AI models hallucinate. Most teams find out too late.
           </h2>
-          <p className="text-[#4A6580] text-lg max-w-xl mx-auto">
-            Wherever AI-generated content gets reviewed against real sources,
-            Audyt makes the verification rigorous and reproducible.
+
+          <p className="text-lg text-[#4A6580] leading-relaxed mb-6">
+            When an AI writes a report, it does not flag uncertainty. It states
+            numbers, cites trends, and draws conclusions with the same confident
+            tone, whether it is right or wrong. By the time someone catches an
+            error, it is already in a client deck.
+          </p>
+          <p className="text-lg text-[#4A6580] leading-relaxed mb-16">
+            Audyt sits between your AI output and your audience. Every factual
+            claim gets checked against your actual source files. Before it leaves
+            your desk, you know exactly what holds up and what does not.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {cases.map((c, i) => (
-            <div
-              key={i}
-              className="bg-white rounded-xl border border-[#E2E8F0] p-6 hover:border-[#06B6D4]/40 hover:shadow-sm transition-all duration-200"
-            >
-              <div className="text-3xl mb-4">{c.icon}</div>
-              <h3 className="font-semibold text-[#0A1628] mb-3 leading-snug">
-                {c.title}
-              </h3>
-              <p className="text-sm text-[#64748B] leading-relaxed">
-                {c.description}
-              </p>
-            </div>
-          ))}
+        <div className="grid md:grid-cols-3 gap-0 max-w-2xl">
+          <StepBox
+            number="01"
+            label="Upload"
+            description="Source documents and AI report"
+            isLast={false}
+          />
+          <StepBox
+            number="02"
+            label="Verify"
+            description="Every claim checked against sources"
+            isLast={false}
+          />
+          <StepBox
+            number="03"
+            label="Report"
+            description="Verdicts with exact citations"
+            isLast={true}
+          />
         </div>
+      </div>
+    </section>
+  );
+}
+
+function StepBox({
+  number,
+  label,
+  description,
+  isLast,
+}: {
+  number: string;
+  label: string;
+  description: string;
+  isLast: boolean;
+}) {
+  return (
+    <div className="relative flex items-start gap-4 p-6 bg-white border border-[#E2E8F0] first:rounded-l-xl last:rounded-r-xl">
+      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#06B6D4]/10 border border-[#06B6D4]/30 flex items-center justify-center">
+        <span className="text-xs font-bold text-[#06B6D4]">{number}</span>
+      </div>
+      <div>
+        <div className="font-semibold text-[#0A1628] text-sm mb-1">{label}</div>
+        <div className="text-xs text-[#64748B]">{description}</div>
+      </div>
+      {!isLast && (
+        <div className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-10 w-6 h-6 rounded-full bg-white border border-[#E2E8F0] items-center justify-center">
+          <svg className="w-3 h-3 text-[#06B6D4]" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── Real Catches Section ──────────────────────────────────────────────────────
+
+function RealCatches() {
+  return (
+    <section className="py-28 bg-[#0A1628]">
+      <div className="mx-auto max-w-5xl px-6">
+        <p className="text-xs font-semibold tracking-widest text-[#06B6D4] uppercase mb-4">
+          From a real audit
+        </p>
+        <h2 className="text-4xl font-bold text-white tracking-tight leading-tight mb-3">
+          This is what we found in 31 seconds.
+        </h2>
+        <p className="text-lg text-[#7FA8C4] mb-12">
+          An AI agent analyzed Dollar General FY2021 to FY2023 data. Here is what it got wrong.
+        </p>
+
+        <div className="grid md:grid-cols-3 gap-4 mb-10">
+          <EvidenceCard
+            title="New stores opened"
+            aiSaid="AI said 1,250"
+            sourceSaid="Source said 987"
+          />
+          <EvidenceCard
+            title="Total locations"
+            aiSaid="AI said 21,000"
+            sourceSaid="Source said 19,986"
+          />
+          <EvidenceCard
+            title="Same-store sales growth"
+            aiSaid="AI said +2.5%"
+            sourceSaid="Source said +0.2%"
+          />
+        </div>
+
+        <p className="text-center text-[#7FA8C4] text-base">
+          9 out of 11 factual claims were wrong. Trust score: 14.3%.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function EvidenceCard({
+  title,
+  aiSaid,
+  sourceSaid,
+}: {
+  title: string;
+  aiSaid: string;
+  sourceSaid: string;
+}) {
+  return (
+    <div className="rounded-xl border border-[#1E3A5F] bg-[#0F1F3C] p-6">
+      <p className="text-xs font-semibold text-[#4A6580] uppercase tracking-wider mb-4">{title}</p>
+      <p className="text-sm text-[#7FA8C4] mb-2">{aiSaid}</p>
+      <p className="text-sm font-semibold text-[#EF4444]">{sourceSaid}</p>
+    </div>
+  );
+}
+
+// ── Waitlist Section ──────────────────────────────────────────────────────────
+
+function WaitlistSection() {
+  return (
+    <section id="waitlist" className="py-28 bg-white">
+      <div className="mx-auto max-w-2xl px-6 text-center">
+        <h2 className="text-4xl font-bold text-[#0A1628] tracking-tight mb-4">
+          We are in early access.
+        </h2>
+        <p className="text-lg text-[#4A6580] leading-relaxed mb-12">
+          A free tier is coming. Five audits a month, no credit card required.
+          Leave your email and we will reach out when it is ready.
+        </p>
+        <iframe
+          src="TALLY_EMBED_URL"
+          width="100%"
+          height="180"
+          style={{ border: "none", background: "transparent" }}
+          title="Early access waitlist"
+        />
       </div>
     </section>
   );
@@ -448,45 +270,85 @@ function UseCases() {
 
 function Footer() {
   return (
-    <footer className="py-12 bg-[#0A1628] border-t border-[#1E3A5F]">
-      <div className="mx-auto max-w-6xl px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-2 text-white font-semibold">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-            <path
-              d="M12 2L21.196 7V17L12 22L2.804 17V7L12 2Z"
-              fill="#06B6D4"
-              fillOpacity="0.9"
-            />
-          </svg>
-          <span>Audyt.ai</span>
-          <span className="text-[#4A6580] font-normal ml-1">
-            © 2026
-          </span>
+    <footer className="bg-[#0A1628] border-t border-[#1E3A5F]">
+      <div className="mx-auto max-w-5xl px-6 py-16">
+        <div className="grid md:grid-cols-3 gap-12 mb-12">
+          <div className="md:col-span-1">
+            <div className="flex items-center gap-1.5 mb-3">
+              <span className="text-white font-bold text-lg">Audyt</span>
+              <span className="text-[#06B6D4] font-bold text-lg">.ai</span>
+            </div>
+            <p className="text-sm text-[#4A6580] mb-2">Verify AI output. Protect your work.</p>
+            <p className="text-sm text-[#4A6580]">2026 Audyt.ai</p>
+          </div>
+
+          <div>
+            <p className="text-xs font-semibold text-[#7FA8C4] uppercase tracking-widest mb-4">Product</p>
+            <div className="space-y-3">
+              <div><Link href="/audit" className="text-sm text-[#4A6580] hover:text-white transition-colors">Try the beta</Link></div>
+              <div><Link href="/dashboard" className="text-sm text-[#4A6580] hover:text-white transition-colors">Dashboard</Link></div>
+              <div><a href="#waitlist" className="text-sm text-[#4A6580] hover:text-white transition-colors">Early access</a></div>
+            </div>
+          </div>
+
+          <div>
+            <p className="text-xs font-semibold text-[#7FA8C4] uppercase tracking-widest mb-4">Company</p>
+            <div className="space-y-3">
+              <div><a href="#" className="text-sm text-[#4A6580] hover:text-white transition-colors">About</a></div>
+              <div><a href="#" className="text-sm text-[#4A6580] hover:text-white transition-colors">Security</a></div>
+              <div><a href="mailto:hello@audyt.ai" className="text-sm text-[#4A6580] hover:text-white transition-colors">Contact</a></div>
+            </div>
+          </div>
         </div>
 
-        <div className="flex items-center gap-6 text-sm text-[#4A6580]">
-          <span>Built by Shrayan Bhattacharya</span>
-          <a
-            href="https://github.com/shrayan-bhattacharya/-verifyai-detector"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1.5 hover:text-white transition-colors"
-          >
-            <svg
-              className="w-4 h-4"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                fillRule="evenodd"
-                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                clipRule="evenodd"
-              />
-            </svg>
-            GitHub
-          </a>
+        <div className="pt-8 border-t border-[#1E3A5F] text-center">
+          <p className="text-xs text-[#4A6580]">
+            Audyt.ai is independent and not affiliated with any AI provider.
+          </p>
         </div>
       </div>
     </footer>
+  );
+}
+
+// ── Icons ─────────────────────────────────────────────────────────────────────
+
+function ArrowRight() {
+  return (
+    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+    </svg>
+  );
+}
+
+function ConsultingIcon() {
+  return (
+    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5" />
+    </svg>
+  );
+}
+
+function FinanceIcon() {
+  return (
+    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75" />
+    </svg>
+  );
+}
+
+function LegalIcon() {
+  return (
+    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.97zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.97z" />
+    </svg>
+  );
+}
+
+function HealthIcon() {
+  return (
+    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+    </svg>
   );
 }

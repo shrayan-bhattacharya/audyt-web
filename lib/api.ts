@@ -1,5 +1,7 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
+const TOKEN_KEY = "audyt_token";
+
 // ── Types ─────────────────────────────────────────────────────────────────────
 
 export type JobStatus = "queued" | "processing" | "complete" | "failed";
@@ -54,7 +56,73 @@ export interface JobResponse {
   completed_at: string | null;
 }
 
-// ── API calls ─────────────────────────────────────────────────────────────────
+export interface AuditHistoryItem {
+  job_id: string;
+  timestamp: string;
+  filename_hints: string[];
+  total_claims: number;
+  correct: number;
+  incorrect: number;
+  unverifiable: number;
+  accuracy_rate: number;
+}
+
+// ── Token helpers ──────────────────────────────────────────────────────────────
+
+export function getStoredToken(): string | null {
+  if (typeof window === "undefined") return null;
+  return localStorage.getItem(TOKEN_KEY);
+}
+
+export function clearToken(): void {
+  if (typeof window === "undefined") return;
+  localStorage.removeItem(TOKEN_KEY);
+}
+
+// ── Auth API ──────────────────────────────────────────────────────────────────
+
+export async function signup(email: string, password: string): Promise<string> {
+  const res = await fetch(`${API_URL}/api/v1/auth/signup`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password }),
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.detail ?? "Signup failed");
+  localStorage.setItem(TOKEN_KEY, data.access_token);
+  return data.access_token;
+}
+
+export async function login(email: string, password: string): Promise<string> {
+  const res = await fetch(`${API_URL}/api/v1/auth/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password }),
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.detail ?? "Login failed");
+  localStorage.setItem(TOKEN_KEY, data.access_token);
+  return data.access_token;
+}
+
+export async function getMe(token: string): Promise<string> {
+  const res = await fetch(`${API_URL}/api/v1/auth/me`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  if (!res.ok) throw new Error("Invalid token");
+  const data = await res.json();
+  return data.email;
+}
+
+export async function getHistory(token: string): Promise<AuditHistoryItem[]> {
+  const res = await fetch(`${API_URL}/api/v1/history`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  if (!res.ok) throw new Error("Failed to fetch history");
+  return res.json();
+}
+
+// ── Audit API ─────────────────────────────────────────────────────────────────
 
 export async function startAudit(
   sourceFiles: File[],
@@ -68,8 +136,14 @@ export async function startAudit(
   if (reportText) form.append("report_text", reportText);
   if (context) form.append("context", context);
 
+  const token = getStoredToken();
+  const headers: HeadersInit = token
+    ? { Authorization: `Bearer ${token}` }
+    : {};
+
   const res = await fetch(`${API_URL}/api/v1/audit`, {
     method: "POST",
+    headers,
     body: form,
   });
 

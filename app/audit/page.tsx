@@ -405,25 +405,23 @@ function UploadView({
             )}
           </div>
 
-          {/* ── Optional context ── */}
+          {/* ── Source context ── */}
           <div className="bg-white rounded-xl border border-[#E2E8F0] p-6">
             <div className="mb-3">
               <h2 className="font-semibold text-[#0A1628] text-sm">
-                Context{" "}
-                <span className="font-normal text-[#94A3B8]">(optional)</span>
+                Source context
               </h2>
-              <p className="text-xs text-[#64748B] mt-0.5">
-                Tell Audyt what this report is about — helps with ambiguous
-                claims
-              </p>
             </div>
-            <input
-              type="text"
+            <textarea
+              rows={3}
               value={context}
               onChange={(e) => setContext(e.target.value)}
-              placeholder="e.g. Q4 2023 earnings call transcript verification"
-              className="w-full rounded-lg border border-[#E2E8F0] bg-[#F8FAFC] px-3.5 py-2.5 text-sm text-[#1E293B] placeholder-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#06B6D4]/30 focus:border-[#06B6D4] transition-colors"
+              placeholder="What should we know about these documents? Date range, subject matter, known limitations, anything that helps."
+              className="w-full rounded-lg border border-[#E2E8F0] bg-[#F8FAFC] px-3.5 py-2.5 text-sm text-[#1E293B] placeholder-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#06B6D4]/30 focus:border-[#06B6D4] transition-colors resize-none"
             />
+            <p className="text-xs text-[#94A3B8] mt-2">
+              No context? No problem. We will work with what you upload.
+            </p>
           </div>
 
           {/* ── Error ── */}
