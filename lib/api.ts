@@ -122,6 +122,16 @@ export async function getHistory(token: string): Promise<AuditHistoryItem[]> {
   return res.json();
 }
 
+// ── Keep-alive ────────────────────────────────────────────────────────────────
+
+export async function warmUp(): Promise<void> {
+  try {
+    await fetch(`${API_URL}/health`);
+  } catch {
+    // fire-and-forget — never throws
+  }
+}
+
 // ── Audit API ─────────────────────────────────────────────────────────────────
 
 export async function startAudit(

@@ -6,6 +6,7 @@ import {
   getAuditStatus,
   getReportTxt,
   getReportCsv,
+  warmUp,
   type JobResponse,
   type ClaimResult,
   type AuditResults,
@@ -39,6 +40,9 @@ export default function AuditPage() {
   // Results state
   const [results, setResults] = useState<AuditResults | null>(null);
   const [jobTime, setJobTime] = useState<number>(0);
+
+  // ── Warm up Render on page load ───────────────────────────────────────────────
+  useEffect(() => { warmUp(); }, []);
 
   // ── Submit ───────────────────────────────────────────────────────────────────
 
