@@ -1,26 +1,41 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ── Design tokens ──────────────────────────────────────────────────────────── */
+@theme {
+  --color-navy:         #0A1628;
+  --color-navy-light:   #0F1F3C;
+  --color-navy-border:  #1E3A5F;
+  --color-navy-muted:   #4A6580;
+
+  --color-accent:       #06B6D4;
+  --color-accent-hover: #0891B2;
+  --color-accent-dim:   #0e7490;
+
+  --color-correct:   #10B981;
+  --color-incorrect: #EF4444;
+  --color-unverif:   #F59E0B;
+
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Base ───────────────────────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: #0A1628;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Subtle grid pattern for hero ──────────────────────────────────────────── */
+.hero-grid {
+  background-color: #0A1628;
+  background-image:
+    linear-gradient(rgba(6, 182, 212, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 182, 212, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
 }
