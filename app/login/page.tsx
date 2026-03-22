@@ -17,7 +17,7 @@ export default function LoginPage() {
     setLoading(true);
     try {
       await login(email, password);
-      router.push("/dashboard");
+      router.push("/");
     } catch (err) {
       setError(
         err instanceof Error ? err.message : "Those credentials do not match our records."
