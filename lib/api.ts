@@ -77,6 +77,12 @@ export function getStoredToken(): string | null {
 export function clearToken(): void {
   if (typeof window === "undefined") return;
   localStorage.removeItem(TOKEN_KEY);
+  document.cookie = `${TOKEN_KEY}=; path=/; max-age=0`;
+}
+
+function persistToken(token: string): void {
+  localStorage.setItem(TOKEN_KEY, token);
+  document.cookie = `${TOKEN_KEY}=${token}; path=/; SameSite=Strict; max-age=604800`;
 }
 
 // ── Auth API ──────────────────────────────────────────────────────────────────
@@ -89,7 +95,7 @@ export async function signup(email: string, password: string): Promise<string> {
   });
   const data = await res.json();
   if (!res.ok) throw new Error(data.detail ?? "Signup failed");
-  localStorage.setItem(TOKEN_KEY, data.access_token);
+  persistToken(data.access_token);
   return data.access_token;
 }
 
@@ -101,7 +107,7 @@ export async function login(email: string, password: string): Promise<string> {
   });
   const data = await res.json();
   if (!res.ok) throw new Error(data.detail ?? "Login failed");
-  localStorage.setItem(TOKEN_KEY, data.access_token);
+  persistToken(data.access_token);
   return data.access_token;
 }
 
